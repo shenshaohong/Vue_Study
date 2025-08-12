@@ -8,9 +8,30 @@
 </head>
 
 <body>
-  <div>
-
+  <div id="app">
+    <p>1.准备容器</p>
+    <!-- 双引号里面就是msg的内容 -->
+    <h3>{{msg}}</h3>
+    <h4 style="color: red;">{{name}}</h4>
   </div>
+  <!-- 2.引入vue包 -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+  <script>
+    //一旦引入 Vue]s核心包，在全局环境，就有了Vue 构造函数
+    const app = new Vue({
+      el: '#app',
+      data: {
+        msg: 'hey! 小vue儿~',
+        name: 'czh'
+      }
+    })
+
+    //  data中的数据，是会被添加到实例上
+    //   1.访问数据 实例.属性名
+    //   2.修改数据 实例.属性名 = 新值
+    app.name = 'xxp'.toUpperCase()
+
+  </script>
 </body>
 
 </html>

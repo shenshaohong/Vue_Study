@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      text-align: center;
+    }
+
+    #app {
+      width: 300px;
+      padding: 20px;
+      border: 5px #ccc solid;
+      position: relative;
+      top: 10%;
+      left: 50%;
+      transform: translate(-50%, 10%);
+      border-radius: 10px;
+    }
+
+    img {
+      width: 70px;
+      height: 50px;
+      object-fit: cover;
+    }
+
+    h4 {
+      margin: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <img :src="imgList[flag]" alt="">
+    <h4>虹虹的饮料店</h4>
+    <button @click="change(false)">上一家</button>
+    <button @click="change(true)">下一家</button>
+    <!-- 教学视频中则是，超过阈值则不显示，用v-show控制，直接写在标签中 -->
+    <!-- <button v-show="index>0>" @click="index--">上一家</button>
+    <button v-show="index<imgList.length-1" @click="index++">下一家</button> -->
+  </div>
+  <!-- 生产环境使用这个 -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.min.js"></script> -->
+
+  <!-- 开发环境使用这个 -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        name: 'czh',
+        money: 100,
+        flag: 0,
+        imgList: [
+          './images/1.jpg',
+          './images/2.jpg',
+          './images/3.jpg',
+          './images/4.jpg',
+          './images/5.jpg',
+          './images/6.jpg',
+          './images/7.jpg',
+        ]
+      },
+      methods: {
+        // 设置临界值，超过则无法操作
+        change(page) {
+          if (this.flag <= 0 && page === false) return
+          if (this.flag >= 6 && page === true) return
+          page ? this.flag++ : this.flag--
+
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

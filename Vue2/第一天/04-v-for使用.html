@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    span {
+      margin-right: 20px;
+    }
+
+    li {
+      margin: 10px 0px;
+      border-bottom: 2px #ccc solid;
+      width: fit-content;
+      padding: 0px 20px 2px 0px;
+
+    }
+  </style>
+</head>
+<div id="app">
+  <ul>
+    <li v-for="(item,index) in booksList">
+      <!-- <span>{{item.name}}</span><span>{{item.author}}</span><button @click="booksList.splice(index,1)">删除</button> -->
+      <span>{{item.name}}</span><span>{{item.author}}</span><button @click="del(item.id,index)">删除</button>
+    </li>
+  </ul>
+</div>
+
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        booksList: [
+          { id: 1, name: '《红》', author: 'h' },
+          { id: 2, name: '《黑》', author: 'black' },
+          { id: 3, name: '《呼和兰传》', author: 'zgr' },
+          { id: 4, name: '《论语》', author: 'bzd' },
+          { id: 5, name: '《放风筝的人》', author: 'wgr' },
+        ]
+      },
+      methods: {
+        del(id, index) {
+          // 这里用过滤函数完成操作
+          // this.booksList = this.booksList.filter(item => item.id !== id)
+          // console.log(this.booksList)
+          // 我这边觉得直接用splice()也没问题
+          this.booksList.splice(index, 1)
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

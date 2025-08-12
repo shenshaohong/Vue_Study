@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <div><label for="username">账号：</label>
+      <input type="text" id="username" v-model="username">
+    </div>
+    <div><label for="password">密码：</label>
+      <input type="password" id="password" v-model="password">
+    </div>
+    <br>
+    <button @click="reset">重置</button>
+    <button @click="submit">提交</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        username: '',
+        password: '',
+      },
+      methods: {
+        reset() {
+          this.username = ''
+          this.password = ''
+        },
+        submit() {
+          localStorage.setItem('username', this.username)
+          localStorage.setItem('password', this.password)
+          console.log(this.username, this.password)
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
