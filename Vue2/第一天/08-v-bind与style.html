@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .progress {
+      width: 400px;
+      height: 30px;
+      border: 3px #000 solid;
+      border-radius: 20px;
+    }
+
+    .percentage {
+      width: 200px;
+      height: 30px;
+      border-radius: 20px;
+      background-color: #faa3b1;
+      border: 1px #000 solid;
+      margin: -1px 0px 0px -1px;
+      text-align: right;
+      transition: width 0.3s ease;
+    }
+
+    .percentage span {
+      margin-right: 20px;
+      line-height: 30px;
+    }
+
+    .btn {
+      width: 400px;
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .btn button {
+      flex: 1;
+      border: #000 solid 2px;
+      border-radius: 5px;
+      font-size: 14px;
+      line-height: 30px;
+      padding: 0;
+      background-color: pink;
+      cursor: pointer;
+      flex-grow: 1;
+      /* 默认不放大 */
+      transition: flex-grow 0.3s ease;
+      /* 添加过渡动画 */
+    }
+
+    .btn button:hover {
+      flex-grow: 2;
+      background-color: #faa3b1;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="progress">
+      <div class="percentage" :style="{width:this.percent}">
+        <span v-html="percent">50%</span>
+      </div>
+    </div>
+    <div class="btn">
+      <button @click="changePercent('30%')">30%</button>
+      <button @click="changePercent('50%')">50%</button>
+      <button @click="changePercent('70%')">70%</button>
+      <button @click="changePercent('100%')">100%</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        percent: '50%',
+      },
+      methods: {
+        changePercent(percents) {
+          this.percent = percents
+          console.log(percents)
+        },
+        // start() {
+        //   num = 0
+        //   this.percent = num + '%'
+        //   setInterval(() => { num++; this.percent = num + '%' }, 500)
+        // }
+      }
+    })
+  </script>
+</body>
+
+</html>

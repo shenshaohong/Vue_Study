@@ -66,12 +66,12 @@
       display: inline-block
     }
 
-    .num {
+    /* .num {
       padding-right: 5px;
-    }
+    } */
 
     .title {
-      width: 190px;
+      width: 200px;
       vertical-align: bottom;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -79,14 +79,22 @@
     }
 
     .del {
-      background-color: #000;
-      border: none;
-      color: #fff;
+      background-color: rgb(189, 237, 226);
+      border: 1px #ccc solid;
+      color: #555;
       cursor: pointer;
-      font-size: 15px;
+      font-size: 12px;
+      font-weight: bold;
       border-radius: 20%;
-      padding: 0px 5px;
       margin-left: 10px;
+      width: 15px;
+      height: 15px;
+      vertical-align: 3px;
+      display: none;
+    }
+
+    .show {
+      display: inline-block;
     }
 
     .bottom {
@@ -127,9 +135,13 @@
         <li v-for="(item,index) in booksList" :key="item.id" @mouseenter="hoverIndex = index"
           @mouseleave="hoverIndex = null">
           <input type="checkbox" v-model="item.finish" @change="ChangStatus(item.finish)">
+          <!-- v-bind控制class类：对象写法 -->
           <span :class="{num:true,finish:item.finish}">{{index+1+'.'}}</span>
           <span :class="{title:true,finish:item.finish}">{{item.title}}</span>
-          <button class="del" @click="del(item.id)" v-if="hoverIndex===index">x</button>
+          <!-- v-bind控制class类：数组写法 -->
+          <!-- <button :class="['del']" @click="del(item.id)" v-if="hoverIndex===index">x</button> -->
+
+          <button :class="{del:true,show:hoverIndex===index}" @click="del(item.id)">x</button>
         </li>
       </ul>
       <div class="bottom">
